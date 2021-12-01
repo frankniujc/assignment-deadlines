@@ -26,8 +26,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                   <h1>
-                    Assignment Deadlines <a href="https://twitter.com/share" class="twitter-share-button" data-text="Countdowns to top CV/NLP/ML/Robotics/Assignment Deadlines #machinelearning" data-show-count="false" style="font-size:13px;">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    <iframe src="https://ghbtns.com/github-btn.html?user=paperswithcode&repo=ai-deadlines&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+                    Assignment Deadlines
                   </h1>
                 </div>
                 <div class="meta col-xs-12">
@@ -192,58 +191,6 @@
             $('#csc428-a2 .timer').replaceWith($('#csc428-a2 .deadline'));
             $('#csc428-a2 .calendar').remove();
           }
-
-
-        // Sort coming_confs and past_confs
-        $("#coming_confs .ConfItem").sort(function (a, b) {
-          return $(b).attr('diff') - $(a).attr('diff');
-        }).appendTo($("#coming_confs"));
-
-        $("#past_confs .ConfItem").sort(function (a, b) {
-          return $(b).attr('diff') - $(a).attr('diff');
-        }).appendTo($("#past_confs"));
-
-        // Event handler on checkbox change
-        $('form :checkbox').change(function(e) {
-          var checked = $(this).is(':checked');
-          var cid = $(this).prop('id');
-          var csub = cid.substring(0, cid.length - 9);
-          if (checked == true) {
-            $('.' + csub + '-conf').show();
-            if (subs.indexOf(csub) < 0)
-              subs.push(csub);
-          }
-          else {
-            $('.' + csub + '-conf').hide();
-            var idx = subs.indexOf(csub);
-            if (idx >= 0)
-              subs.splice(idx, 1);
-            // In case a conf with multiple types (including this type) is wrongly hid, show all confs with at least one checked type.
-            for (var i = 0; i < subs.length; i++) {
-              $('.' + subs[i] + '-conf').show();
-            }
-          }
-          console.log(subs);
-          store.set('aideadlin.es', subs);
-          window.history.pushState('', '', '/?sub=' + subs.join());
-        });
-
-        // Event handler on sub click
-        $('.conf-sub').click(function(e) {
-          var csub = $(this).data('sub');
-          for (var i = 0; i < subs.length; i++) {
-            if (subs[i] != csub) {
-              $('#' + subs[i] + '-checkbox').prop('checked', false);
-              $('.' + subs[i] + '-conf').hide();
-            }
-          }
-          $('#' + csub + '-checkbox').prop('checked', true);
-          $('.' + csub + '-conf').show();
-          subs = [csub];
-          console.log(subs);
-          store.set('aideadlin.es', subs);
-          window.history.pushState('', '', '/?sub=' + subs.join());
-        });
     });
     </script>
   </body>
